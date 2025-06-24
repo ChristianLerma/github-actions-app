@@ -6,6 +6,6 @@ jobs:
     first_job: 
         runs-on: ubuntu-latest
 
-        steps: 
-            - name: Print variable
-                run: echo "This is a variable: ${{ secrets.MY_SECRET }}"
+        steps:
+          - name: Print variable
+            run: echo "This is a variable: ${{ secrets.MY_SECRET }}"
