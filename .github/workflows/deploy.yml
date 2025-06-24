@@ -3,23 +3,31 @@ name: deploy
 on: push
 
 jobs:
-    first_job: 
-        runs-on: ubuntu-latest
+  build: 
+    runs-on: ubuntu-latest
 
-        steps:
-          - name: Print variable
-            run: echo "${{ secrets.MY_SECRET }}"
+    steps:
+      - name: Print variable
+        run: echo "${{ secrets.MY_SECRET }}"
 
-          - name: Checkout
-            uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-          - name: Setup
-            uses: actions/setup-node@v4
-            with:
-              node-version: '22'
+      - name: Setup
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
 
-          - name: Install dependencies
-            run: npm install
+      - name: Install dependencies
+        run: npm install
 
-          - name: Run tests
-            run: npm run test
+      - name: Run tests
+        run: npm run test
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy
+        run: echo "Deploying application..."
