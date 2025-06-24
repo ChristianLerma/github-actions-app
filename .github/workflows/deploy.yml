@@ -30,13 +30,21 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: public
           path: public
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
 
+    permissions:
+      id-token: write
+      contents: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.build.outputs.deploy-url }}
+
     steps:
       - name: Deploy
-        run: echo "Deploying application..."
+        id: deployment-pages
+        run: actions/deploy-pages@v4
