@@ -17,7 +17,7 @@ jobs:
             run: sudo apt-get update -y && sudo apt-get install redis-tools -y
 
           - name: Check redis connection
-            run: redis-cli -h localhost -p 6379ping
+            run: redis-cli -h localhost -p 6379 ping
 
           - name: Print variable
             run: echo "${{ secrets.MY_SECRET }}"
