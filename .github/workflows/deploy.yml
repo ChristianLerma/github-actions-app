@@ -40,10 +40,6 @@ jobs:
       id-token: write
       contents: write
 
-    environment:
-      name: github-pages
-      url: ${{ steps.build.outputs.deploy-url }}
-
     steps:
       - name: Deploy
         id: deployment-pages
