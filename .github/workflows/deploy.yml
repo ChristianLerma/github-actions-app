@@ -62,13 +62,11 @@ jobs:
 
     steps:
       - name: Notify
-        uses: peter-evans/slack-github-action@v2
+        uses: 8398a7/action-slack@v3
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_TOKEN }}
         with:
           status: ${{ job.status }}
-          channel: '#general'
-          text: 'Deployment completed with status: ${{ job.status }}'
-          token: ${{ secrets.SLACK_TOKEN }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          fields: repo, commit, author, message, job, run, workflow, took
 
 
